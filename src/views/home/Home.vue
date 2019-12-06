@@ -1,7 +1,11 @@
 <template>
   <div id="home" class="wrapper">
-
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+    <tab-control @tabClick='tabClick'
+                 :titles="['流行','新款','精选']"
+                 ref="tabControl1"
+                 class="tabControl"
+                 v-show="isTabFixed"/>
      <scroll class="content" ref="scroll"
              :probe-type="3"
              :pull-up-load="true"
@@ -11,7 +15,8 @@
        <recommend-view :recommends="recommends"/>
        <feature-view/>
        <tab-control @tabClick='tabClick'
-                    :titles="['流行','新款','精选']" ref="tabControl"/>
+                    :titles="['流行','新款','精选']"
+                    ref="tabControl2" />
        <goods-list :goods="showGoods"/>
 
      </scroll>
@@ -62,7 +67,9 @@ import {getHomeData,getHomeGoods} from "network/home";
         },
         currentType:'pop',
         isShow:false,
-        tabOffsetTop:0
+        tabOffsetTop:0,
+        isTabFixed:false,
+        saveY:0
       }
     },
     //生命周期
@@ -90,6 +97,18 @@ import {getHomeData,getHomeGoods} from "network/home";
       showGoods(){
         return this.goods[this.currentType].list
       }
+    },
+    destroyed() {
+      // console.log('destroyed');
+    },
+    activated() {
+      // console.log('activated');
+      this.$refs.scroll.scrollTo(0,this.saveY,0)
+      this.$refs.scroll.refresh()
+    },
+    deactivated() {
+      // console.log('deactivated');
+      this.saveY = this.$refs.scroll.getScrollY()
     },
     methods:{
       /**
@@ -137,9 +156,14 @@ import {getHomeData,getHomeGoods} from "network/home";
             this.currentType='sell'
             break
         }
+        this.$refs.tabControl1.currentIndex = index
+        this.$refs.tabControl2.currentIndex = index
       },
       contentScroll(position){
-        this.isShow = -position.y >1000
+        //1.怕那段BackTop是否显示
+        this.isShow = (-position.y) >1000
+        //2.决定tabcontrol是否吸顶（position：fixed）
+        this.isTabFixed=(-position.y)>this.tabOffsetTop
       },
       loadMore(){
 
@@ -150,7 +174,7 @@ import {getHomeData,getHomeGoods} from "network/home";
       swiperImageLoad(){
         //获取tabctrol的offsettop
         //所有的组件都有一个属性$el 用于获取组件元素的
-        console.log(this.$refs.tabControl.$el.offsetTop);
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
       },
       /**
        * 网络请求方法
@@ -186,7 +210,7 @@ import {getHomeData,getHomeGoods} from "network/home";
   }
   .home-nav {
     background-color: var(--color-tint);
-    color: #f6f6f6;
+    color: #fff;
     position: fixed;
     right: 0;
     left: 0;
@@ -202,6 +226,17 @@ import {getHomeData,getHomeGoods} from "network/home";
     bottom:49px;
     left: 0;
     right: 0;
+  }
+  .fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 44px;
+  }
+  .tab-control {
+    position: relative;
+    z-index: 9;
+    background-color: #fff;
   }
   /*.content{*/
   /*  margin-top: 44px;*/
