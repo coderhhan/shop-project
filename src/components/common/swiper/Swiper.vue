@@ -3,7 +3,8 @@
       <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
         <slot></slot>
       </div>
-      <slot name="indicator"></slot>
+      <slot name="indicator">
+      </slot>
       <div class="indicator">
         <slot name="indicator" v-if="showIndicator && slideCount>1">
           <div v-for="(item,index) in slideCount" class="indi-item"
@@ -34,7 +35,7 @@
         default:true
       }
     },
-    data:function () {
+    data() {
         return{
           slideCount:0,//元素个数
           totalWidth:0,//swiper的宽度
@@ -49,7 +50,7 @@
         this.handleDom();
         //2开启定时器
         this.startTimer();
-      },100)
+      },1000)
     },
     methods:{
       /**
@@ -83,14 +84,14 @@
        */
         checkPosition:function () {
           window.setTimeout(()=>{
-            //1.校验正确的位置
+            //1.校验正确的位置f
             this.swiperStyle.transition = '0ms';
             if (this.currentIndex >= this.slideCount+1){
               this.currentIndex = 1;
               this.setTransform(-this.currentIndex*this.totalWidth);
             }else if (this.currentIndex <=0){
               this.currentIndex = this.slideCount;
-              this.setTransform(-this.currentIndex*this.total);
+              this.setTransform(-this.currentIndex*this.totalWidth);
             }
             //2.结束移动后的回调
             this.$emit('transitionEnd',this.currentIndex-1);
@@ -119,6 +120,7 @@
           let cloneFirst = slidesEls[0].cloneNode(true);
           let cloneLast =slidesEls[this.slideCount-1].cloneNode(true);
           swiperEl.insertBefore(cloneLast,slidesEls[0]);
+          swiperEl.appendChild(cloneFirst);
           this.totalWidth = swiperEl.offsetWidth;
           this.swiperStyle = swiperEl.style;
 
@@ -140,7 +142,7 @@
       },
       touchMove:function (e) {
       this.currentX = e.touches[0].pageX;
-      this.distance =this.currentIndex-this.startX;
+      this.distance =this.currentX-this.startX;
       let currentPosition =-this.currentIndex*this.totalWidth;
       let moveDistance = this.distance+currentPosition;
       //2.设置当前的位置
@@ -174,12 +176,13 @@
       next:function () {
         this.changeItem(1);
       },
-      changeItem:function () {
+      changeItem:function (num) {
         //1移除定时器
         this.stopTimer();
 
         //2.修改index和位置
         this.currentIndex  += num;
+
         this.scrollContent(-this.currentIndex*this.totalWidth);
 
         //3.添加定时器
