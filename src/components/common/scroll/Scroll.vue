@@ -37,7 +37,7 @@
       //2监听滚动的位置
       this.scroll.on('scroll',(position)=>{
         this.$emit('scrollPosition',position)
-        // console.log(position);
+         // console.log(position);
         this.scroll.refresh()
       })
       //3监听上拉事件,判断true
@@ -65,7 +65,7 @@
         this.scroll && this.scroll.refresh()
       },
       getScrollY(){
-        return this.scroll? this.scroll.y:0
+        return this.scroll.y? this.scroll.y:0
       }
     }
   }

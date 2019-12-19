@@ -26,11 +26,13 @@
 
 <script>
   //default 所以要用大括号{}
-import {getHomeData,getHomeGoods} from "network/home";
+  import {getHomeData,getHomeGoods} from "network/home";
+  import {itemListenerMixin,BackToTopMixin} from "common/mixin";
  import {debounce} from "common/utils.js";
 
+
   // import HomeSwiper from "./chilComps/HomeSwiper";
-  import backTop from "../../components/content/backTop/backTop";
+  // import backTop from "../../components/content/backTop/backTop";
   import GoodsList from "components/content/goods/GoodsList";
   import NavBar from "components/common/navbar/NavBar";
   import tabControl from "components/content/tabControl/tabControl";
@@ -41,6 +43,7 @@ import {getHomeData,getHomeGoods} from "network/home";
   import HomeSwiper from "./chilComps/HomeSwiper";
   import RecommendView from "./chilComps/RecommendView";
   import FeatureView from "./chilComps/FeatureView";
+  import {BACK_TOP_POSITION} from "../../common/const";
 
   export default {
     name: "Home",
@@ -53,7 +56,7 @@ import {getHomeData,getHomeGoods} from "network/home";
       tabControl,
       GoodsList,
       Scroll,
-      backTop
+      // backTop
     },
     data(){
       return {
@@ -66,12 +69,13 @@ import {getHomeData,getHomeGoods} from "network/home";
 
         },
         currentType:'pop',
-        isShow:false,
+        // isShow:false,
         tabOffsetTop:0,
         isTabFixed:false,
         saveY:0
       }
     },
+    mixins:[itemListenerMixin,BackToTopMixin],
     //生命周期
     created() {
       //1请求多个数据
@@ -83,13 +87,12 @@ import {getHomeData,getHomeGoods} from "network/home";
 
     },
     mounted() {
-      //防抖函数部分
-          const refresh = debounce(this.$refs.scroll.refresh,300)
-      //3监听图片加载完毕 bus事件总线在mian。js中注册组件
-      this.$bus.$on('itemImageLoad',()=>{
-
-        refresh()
-      })
+      // //防抖函数部分
+      //     const refresh = debounce(this.$refs.scroll.refresh,300)
+      // //3监听图片加载完毕 bus事件总线在mian。js中注册组件
+      // this.$bus.$on('homeItemImageLoad',()=>{
+      //   refresh()
+      // })
 
 
     },
@@ -109,6 +112,7 @@ import {getHomeData,getHomeGoods} from "network/home";
     deactivated() {
       // console.log('deactivated');
       this.saveY = this.$refs.scroll.getScrollY()
+      this.$bus.$off('ItemImageLoad',this.itemImgListener)
     },
     methods:{
       /**
@@ -141,9 +145,9 @@ import {getHomeData,getHomeGoods} from "network/home";
       //   }
       // },
 
-      backClick(){
-        this.$refs.scroll.scrollTo(0,0,300)
-      },
+      // backClick(){
+      //   this.$refs.scroll.scrollTo(0,0,300)
+      // },
       tabClick(index){
         switch (index) {
           case 0:
@@ -161,10 +165,16 @@ import {getHomeData,getHomeGoods} from "network/home";
       },
       contentScroll(position){
         //1.怕那段BackTop是否显示
-        this.isShow = (-position.y) >1000
+        this.isShow = (-position.y) >BACK_TOP_POSITION
         //2.决定tabcontrol是否吸顶（position：fixed）
         this.isTabFixed=(-position.y)>this.tabOffsetTop
       },
+      // contentScroll(position){
+      //   //1.怕那段BackTop是否显示
+      //   this.isShow = (-position.y) >1000
+      //   //2.决定tabcontrol是否吸顶（position：fixed）
+      //   this.isTabFixed=(-position.y)>this.tabOffsetTop
+      // },
       loadMore(){
 
           this.getHomeGoodsFn(this.currentType)

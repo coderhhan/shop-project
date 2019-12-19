@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper" ref="aaaa">
     <ul class="content">
-      <button @click="test">按钮</button>
       <li>分类的类别1</li>
       <li>分类的类别2</li>
       <li>分类的类别3</li>

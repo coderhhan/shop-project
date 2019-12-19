@@ -1,6 +1,6 @@
 <template>
   <div class="back-top">
-    <img src="~assets/img/tabbar/home.png" alt="">
+    <img src="~assets/img/common/backTop.png" alt="">
 
   </div>
 </template>
@@ -16,5 +16,8 @@
   position: fixed;
   right: 10px;
   bottom: 60px;
+}
+.back-top img{
+  width: 80px;
 }
 </style>
