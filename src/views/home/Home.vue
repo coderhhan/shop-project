@@ -87,11 +87,11 @@
 
     },
     mounted() {
-      // //防抖函数部分
-      //     const refresh = debounce(this.$refs.scroll.refresh,300)
-      // //3监听图片加载完毕 bus事件总线在mian。js中注册组件
-      // this.$bus.$on('homeItemImageLoad',()=>{
-      //   refresh()
+      // // // //防抖函数部分///请看mixin
+      //     const refresh = this.debounce(this.$refs.scroll.refresh,300)
+      // // //3监听图片加载完毕 bus事件总线在mian。js中注册组件
+      // // this.$bus.$on('homeItemImageLoad',()=>{
+      // //   refresh()
       // })
 
 
@@ -134,7 +134,7 @@
       //       console.log('d')
       //       console.log('f')
         //  输出b d f 除了第一条其他都执行
-
+///请看mixin
       // debounce (func,delay){
       //   let timer =null
       //   return function (...args) {
@@ -220,6 +220,7 @@
   }
   .home-nav {
     background-color: var(--color-tint);
+    font-weight: bold;
     color: #fff;
     position: fixed;
     right: 0;
@@ -227,6 +228,7 @@
     top: 0;
     z-index: 9;
 }
+
 
   .content{
     /*height: 300px;*/

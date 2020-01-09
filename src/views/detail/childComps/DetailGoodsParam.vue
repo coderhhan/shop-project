@@ -22,11 +22,8 @@
   export default {
     name: "DetailGoodsParam",
     props:{
-      detailParam:{
-        type:Object,
-        default (){
-          return {}
-           }
+      detailParam: {
+        type: Object
       }
     }
   }

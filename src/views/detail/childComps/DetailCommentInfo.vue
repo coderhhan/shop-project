@@ -36,16 +36,6 @@
         }
       },
     },
-    mounted() {
-     this.get()
-    },
-    methods:{
-      get(){
-        const lengt =Object.keys(this.commentInfo).length
-        console.log(lengt);
-        console.log(this.commentInfo)
-      }
-    },
     filters:{
       showDate(value){
         //1将时间戳变成date对象

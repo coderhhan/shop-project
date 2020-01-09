@@ -42,5 +42,6 @@
 .nav-bar{
   background-color: var(--color-tint);
   color: #fff;
+  font-weight: bold;
 }
 </style>

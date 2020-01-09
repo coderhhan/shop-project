@@ -2,7 +2,7 @@ import {request} from "./request";
 
 export  function getDetail(iid) {
   return request({
-    url:'/api/v1/detail',
+    url:'/api/w1/detail',
     params:{
       iid
     }
@@ -12,7 +12,7 @@ export  function getDetail(iid) {
 
 export  function getRecommend(){
   return request({
-    url:'/api/v1/recommend'
+    url:'/api/w1/recommend'
   })
 }
 //es6写法 构造函数

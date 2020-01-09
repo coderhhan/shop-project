@@ -15,6 +15,12 @@
         type:Number,
         default:0
       },
+      data: {
+        type: Array,
+        default: () => {
+          return []
+        }
+      },
       pullUpLoad:{
         type:Boolean,
         default: false
@@ -63,6 +69,7 @@
       },
       refresh(){
         this.scroll && this.scroll.refresh()
+        console.log('---')
       },
       getScrollY(){
         return this.scroll.y? this.scroll.y:0

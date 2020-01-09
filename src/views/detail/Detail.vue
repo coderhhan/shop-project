@@ -1,21 +1,24 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
+    <detail-nav-bar class="detail-nav" :isExist="isExist" @titleClick="titleClick" ref="nav"/>
 
-    <scroll class="content" ref="scroll" :probe-type="3" @scrollPosition="contentScroll">
-    <detail-swiper :topImages="topImages"/>
-    <detail-base-info :goods="goods"/>
-    <detail-shop-info :shop="shop"/>
-    <detail-goods-info ref="goodsInfo" :detailInfo="detailInfo" @ImageLoad="ImageLoad"/>
-    <detail-goods-param ref="goodsParam" :detailParam="detailParam" />
-    <detail-comment-info ref="commentInfo" :commentInfo="commentInfo" />
-     <goods-list ref="recommendInfo" :goods="recommendInfo" />
+    <scroll class="content" ref="scroll"
+            :probe-type="3"
+            @scrollPosition="contentScroll"
+            :data="[topImages, goods, shop, detailInfo, detailParam, commentInfo, recommendInfo]">
+          <detail-swiper :topImages="topImages"/>
+          <detail-base-info :goods="goods"/>
+          <detail-shop-info :shop="shop"/>
+          <detail-goods-info ref="goodsInfo" :detailInfo="detailInfo" @ImageLoad="ImageLoad"/>
+          <detail-goods-param ref="goodsParam" :detailParam="detailParam" />
+          <detail-comment-info ref="commentInfo" :commentInfo="commentInfo" />
+           <goods-list ref="recommendInfo" :goods="recommendInfo" />
     </scroll>
     <back-top @click.native="backClick" v-show="isShow"/>
 
     <detail-bottom-bar class="detail-bottom" @addCart="addCart"/>
 
-    <toast />
+    <toast/>
   </div>
 </template>
 
@@ -72,6 +75,7 @@
         getThemeTopY:null,
         moveToThemeTop:null,
         currentIndex:0,
+        isExist:true
         // isShowToast:false,
         // message:''
       }
@@ -96,6 +100,7 @@
       //
       // })
 
+
     },
     created() {
       //1.保存存入的iid
@@ -118,13 +123,18 @@
 
         //获取参数数据
         this.detailParam = new GoodsParam(data.itemParams.info,data.itemParams.rule)
-        // console.log(this.detailParam)
+        console.log(this.detailParam)
 
         //获取评论区数据
-        if (data.rate.cRate !==0){
+        if (data.rate.list){
           this.commentInfo = data.rate.list[0]
           this.name= this.commentInfo.user.uname
+        }else{
+
+          this.isExist = false
+          console.log(data.rate.list+'评论区数据'+this.isExist)
         }
+
         this.getThemeTopY = debounce (()=>{
           this.themeTopY = []
           this.themeTopY.push(0);
@@ -134,6 +144,8 @@
           this.themeTopY.push(Number.MAX_VALUE);
           console.log(this.themeTopY)
         },100)
+
+        console.log(this.getThemeTopY)
 
       })
       getRecommend().then(res=>{

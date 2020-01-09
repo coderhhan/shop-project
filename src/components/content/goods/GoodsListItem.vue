@@ -22,7 +22,13 @@
     },
     computed: {
       showGoodsImage() {
-        return this.goodsItem.image || this.goodsItem.show.img
+        if (this.goodsItem.image){
+          return this.goodsItem.image
+        }else if (this.goodsItem.img){
+          return this.goodsItem.img
+        }else if (this.goodsItem.show.img){
+          return this.goodsItem.show.img
+        }
       }
     }
     ,
