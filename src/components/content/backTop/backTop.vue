@@ -18,6 +18,6 @@
   bottom: 60px;
 }
 .back-top img{
-  width: 80px;
+  width: 60px;
 }
 </style>

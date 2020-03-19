@@ -24,6 +24,10 @@
   <div class="service-list">
      <list-info :listData="serviceList"></list-info>
   </div>
+  <div class="service-list" style="margin-top: 10px" @click="toMap">
+      <i class="iconfont icon-ditu"> 疫情时况</i>
+  </div>
+
 </div>
 </template>
 
@@ -52,10 +56,16 @@
         ]
       }
     },
+    methods:{
+      toMap(){
+        this.$router.push('/map')
+      }
+    }
   }
 </script>
 
 <style scoped>
+  @import url('//at.alicdn.com/t/font_1699883_m3sqern1pp.css');
   .profile-nav-bar{
     border-bottom: 1px solid rgba(0,0,0,.5);
     background-color:var(--color-tint);

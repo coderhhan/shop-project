@@ -16,7 +16,7 @@
     </scroll>
     <back-top @click.native="backClick" v-show="isShow"/>
 
-    <detail-bottom-bar class="detail-bottom" @addCart="addCart"/>
+    <detail-bottom-bar class="detail-bottom" @addCart="addCart" :goodsInfo="goods" :topImages="topImages"/>
 
     <toast/>
   </div>
@@ -113,6 +113,7 @@
         this.topImages = data.itemInfo.topImages
         //获取商品信息
         this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
+        console.log( this.goods)
         //获取店铺信息
         this.shop = new Shop(data.shopInfo)
         // console.log(data.shopInfo)
@@ -163,7 +164,7 @@
         add:'addCart'
       }),
       //监听加入购物车
-      addCart(){
+      addCart(data){
         //获取商品的信息
         const product={}
         product.image =this.topImages[0];
@@ -172,6 +173,7 @@
         product.price = this.goods.realPrice;
         product.iid = this.iid;
         product.count =0;
+        product.selectedNum = parseInt(data)
         //将商品添加到购物车里 -vuex
 
         // this.$store.dispatch('addCart',product).then(res =>{
@@ -187,7 +189,8 @@
          //   this.isShowToast = false
          //   this.message=''
          // },1500);
-          this.$toast.isShowToast(res,2000)
+          this.$toast.success(res);
+          // this.$toast.isShowToast(res,2000)
         //
         })
       },

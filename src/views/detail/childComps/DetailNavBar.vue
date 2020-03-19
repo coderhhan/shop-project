@@ -1,7 +1,7 @@
 <template>
   <nav-bar>
     <div slot="left" class="backbtn" @click="backClick">
-      <img src="~assets/img/detail/back.png" alt="">
+      <van-icon name="arrow-left" size="25px" />
     </div>
     <div slot="center" class="title">
       <div v-for="(item,index) in titles"
@@ -10,6 +10,9 @@
            :class="{active:index === currentIndex}" @click="itemClick(index)">
         {{item}}
       </div>
+    </div>
+    <div slot="right" class="backbtn" @click="cartBtn">
+      <van-icon name="shopping-cart-o"  size="25px"/>
     </div>
   </nav-bar>
 </template>
@@ -48,6 +51,9 @@
       },
       backClick(){
         this.$router.back()
+      },
+      cartBtn(){
+        this.$router.push('/cart')
       }
     }
   }
@@ -64,10 +70,15 @@
   .active{
     color: var(--color-high-text);
   }
-  .backbtn img{
-   margin-top: 15px;
-    width: 20px;
+  .backbtn {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    align-items:center;
+    display: -webkit-flex;
+    justify-content:center;
 
   }
+
 
 </style>

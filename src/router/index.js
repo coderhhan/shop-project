@@ -6,6 +6,7 @@ const Cart = () => import('views/cart/Cart')
 const Category = () => import('views/category/Category')
 const Profile = () => import('views/profile/Profile')
 const Detail = () =>import('views/detail/Detail')
+const Map = () =>import('views/profile/map/Map')
 //插件安装
 Vue.use(VueRouter)
 
@@ -36,6 +37,10 @@ const routes=[
   {
     path:'/detail/:iid',
     component:Detail
+  },
+  {
+    path:'/map',
+    component:Map
   }
 ]
 const router =new VueRouter({

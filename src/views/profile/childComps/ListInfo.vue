@@ -1,10 +1,10 @@
 <template>
   <div class="list-info-content">
-        <div v-for="(item,index) in listData" :key="index" class="item">
+        <div v-for="(item,index) in listData" :key="index" class="item" >
             <span class="icon">
                 <img :src="item.icon" alt="">
            </span>
-          <div class="info">{{item.info}}</div>
+          <div class="info" @click="cart(item)">{{item.info}}</div>
         </div>
   </div>
 </template>
@@ -16,6 +16,13 @@
       listData:{
         type:Array,
         default:[]
+      }
+    },
+    methods: {
+      cart(item) {
+        if (item.info == '我的购物车') {
+          this.$router.push('/cart')
+        }
       }
     }
   }

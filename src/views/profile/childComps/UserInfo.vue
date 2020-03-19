@@ -1,7 +1,7 @@
 <template>
   <div id="user-info">
     <div class="user-img">
-      <img src="~assets/img/tabbar/profile.gif" alt="">
+      <van-icon name="user-o" size="60px" />
     </div>
     <div class="user-login left">
       <div class="login">登录/注册</div>
@@ -9,7 +9,6 @@
       <img class="phone-img" src="~assets/img/profile/phone.png" alt="">
     </div>
     <img class="arrow right" src="~assets/img/detail/back.png" alt="">
-
   </div>
 </template>
 

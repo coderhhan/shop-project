@@ -20,12 +20,12 @@
       path:String,
       activeColor:{
         type:String,
-        default:'red'
+        default:'#ff8198'
       }
     },
     data(){
       return{
-        /*isActive:true*/
+        // isActive:true
       }
   },
     computed:{
@@ -64,6 +64,6 @@
     vertical-align: middle;
   }
   .active{
-    color: red;
+    color:var(--color-high-text);
   }
 </style>

@@ -27,7 +27,7 @@
 .goods {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 1%;
+  justify-content: space-evenly;
+  /*padding: 1%;*/
 }
 </style>

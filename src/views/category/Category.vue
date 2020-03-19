@@ -11,9 +11,14 @@
           @selectIndex="selectItem"
           @click.native="toggle"
           ></tab-menu>
+      <tab-control :titles="['综合', '新品', '销量']"
+                   ref="tabControl1"
+                   class="tabControl"
+                   v-show="isTabFixed"
+                   @tabClick="tabClick"/>
           <scroll id="tab-content" @scrollPosition="contentScroll" ref="scroll"  :probe-type="3">
-              <tab-content-category :categoryData="categoryData"></tab-content-category>
-              <tab-control :titles="['综合', '新品', '销量']"  @tabClick="tabClick"></tab-control>
+              <tab-content-category :categoryData="categoryData" @categoriesImageLoad="categoriesImageLoad"></tab-content-category>
+              <tab-control :titles="['综合', '新品', '销量']"  @tabClick="tabClick" ref="tabControl2"/>
               <tab-category-detail :getCategoryDetailInfo="getCategoryDetailInfo"></tab-category-detail>
           </scroll>
           <back-top @click.native="backClick" v-show="isShow"></back-top>
@@ -45,7 +50,10 @@
           currentIndex: 0,
           getCategoryDetailInfo:[],
           isShow:false,
-          toggles:[]
+          toggles:[],
+         isTabFixed:false,
+         tabOffsetTop:0
+
       }
     },
     mixins:[itemListenerMixin,BackToTopMixin],
@@ -75,8 +83,13 @@
       toggle(){
 
       },
+      categoriesImageLoad(){
+        console.log('触发')
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
+      },
       contentScroll(position) {
         this.isShow = (-position.y) > BACK_TOP_POSITION
+        this.isTabFixed=(-position.y)>this.tabOffsetTop
       },
       backClick(){
         this.$refs.scroll.scrollTo(0,0,300)
@@ -158,5 +171,14 @@
 }
   .tab-content-scroll{
     height:475px;
+  }
+  .tabControl{
+    top: 44px;
+    left: 96px;
+    width: 224px;
+    height: 40px;
+    position: absolute;
+    z-index: 9;
+    background-color: white;
   }
 </style>

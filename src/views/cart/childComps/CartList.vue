@@ -44,6 +44,7 @@
 .content{
   height: 100%;
   overflow: hidden;
+  background-color: #F2F2F2;
 }
 
 </style>

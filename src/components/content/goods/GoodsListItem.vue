@@ -5,6 +5,7 @@
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
       <span class="collect">{{goodsItem.cfav}}</span>
+      <van-icon name="star-o" />
     </div>
 </div>
 </template>
@@ -58,7 +59,7 @@
     padding-bottom: 40px;
     position: relative;
     width: 48%;
-
+    flex-basis: 45%;
   }
   .goods-item img {
     width: 100%;
@@ -94,6 +95,5 @@
   top: -1px;
   width: 14px;
   height: 14px;
-  background: url("~assets/img/common/collect.png") 0 0/14px 14px;
 }
 </style>

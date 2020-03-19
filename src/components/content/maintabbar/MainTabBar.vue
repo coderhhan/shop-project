@@ -1,23 +1,23 @@
 <template>
   <tab-bar>
     <tab-bar-item path="/home" >
-      <img slot="item-icon"src="~assets/img/tabbar/home.gif" alt="">
-      <img slot="item-icon-active" src="~assets/img/tabbar/home1.gif" alt="">
+      <van-icon slot="item-icon" size="30px" name="wap-home" />
+      <van-icon slot="item-icon-active" color="var(--color-tint)" size="30px"  name="wap-home" />
       <div slot="item-text">首页</div>
     </tab-bar-item>
     <tab-bar-item path="/category">
-      <img slot="item-icon" src="~assets/img/tabbar/category.gif" alt="">
-      <img slot="item-icon-active" src="~assets/img/tabbar/category1.gif" alt="">
+      <van-icon slot="item-icon" name="apps-o" size="30px"/>
+      <van-icon slot="item-icon-active" color="var(--color-tint)" name="apps-o" size="30px"/>
       <div slot="item-text">分类</div>
     </tab-bar-item>
     <tab-bar-item path="/cart">
-      <img slot="item-icon" src="~assets/img/tabbar/cart.gif" alt="">
-      <img slot="item-icon-active" src="~assets/img/tabbar/cart1.gif" alt="">
+      <van-icon slot="item-icon" name="shopping-cart" size="30px"/>
+      <van-icon slot="item-icon-active" color="var(--color-tint)"  size="30px" name="shopping-cart" />
       <div slot="item-text">购物车</div>
     </tab-bar-item>
     <tab-bar-item path="/profile">
-      <img slot="item-icon" src="~assets/img/tabbar/profile.gif" alt="">
-      <img slot="item-icon-active" src="~assets/img/tabbar/profile1.gif" alt="">
+      <van-icon slot="item-icon" name="manager" size="30px"/>
+      <van-icon slot="item-icon-active" color="var(--color-tint)"  size="30px" name="manager" />
       <div slot="item-text">我的</div>
     </tab-bar-item>
 
@@ -38,5 +38,13 @@
 </script>
 
 <style scoped>
+.van-icon {
+  margin-top: 3px;
+  vertical-align: middle;
+
+}
+.van-icon :active{
+  color:var(--color-tint);
+}
 
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <grid-view>
+  <div class="detail-container">
       <goods-list-item v-for="(item,index) in getCategoryDetailInfo" :key="index" :goods-item="item"></goods-list-item>
-  </grid-view>
+  </div>
 </template>
 
 <script>
@@ -25,5 +25,9 @@
 </script>
 
 <style scoped>
-
+.detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 </style>
