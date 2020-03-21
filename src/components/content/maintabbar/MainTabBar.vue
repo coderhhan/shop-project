@@ -47,4 +47,7 @@
   color:var(--color-tint);
 }
 
+  div{
+  background-color: #F6F6F6;
+  }
 </style>

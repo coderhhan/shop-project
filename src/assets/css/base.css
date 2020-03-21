@@ -52,3 +52,10 @@ a {
     float: right;
 }
 * {touch-action: pan-y;}
+
+#app {
+  font-size: 16px;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}

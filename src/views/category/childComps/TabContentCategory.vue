@@ -1,22 +1,16 @@
 <template>
-  <div>
-    <!--<grid-view :cols="3" :lineSpace="15" :v-margin="20" id="tab-content-category">-->
-        <!--<div v-for="(item,index) in categoryData" class="item" :key="index">-->
-          <!--<img :src="item.image" alt="">-->
-          <!--<div class="category-text">{{item.title}}</div>-->
-        <!--</div>-->
-    <!--</grid-view>-->
-    <div class="tab-content-category">
-      <div v-for="(item,index) in categoryData" class="item" :key="index">
+    <div class="tab-content-category" >
+      <div v-for="(item,index) in this.categoryData " class="item" :key="index">
         <img :src="item.image" alt="" @load="imageLoad">
         <div class="category-text">{{item.title}}</div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import GridView from "../../../components/common/gridview/GridView";
+// import { getSubcategory } from  "../../../network/category.js"
+import {mapState} from "vuex"
   export default {
     name: "TabContentCategory",
     components:{
@@ -24,18 +18,38 @@ import GridView from "../../../components/common/gridview/GridView";
     },
     data(){
       return {
-        isLoad:false
+        isLoad:false,
+        defaultIndex:0,
       }
     },
     props:{
-      categoryData:Array
+      categoryData:{
+        type:Array,
+        default(){
+          return []
+        }
+      },
+      maitKey:{
+        type:String,
+        default() {
+          return '';
+        }
+      }
+    },
+    computed:{
+      ...mapState({
+        categoryContent:'categoryContent',
+      }),
     },
     methods:{
       imageLoad(){
-        if (!this.isLoad)
-        {this.$emit('categoriesImageLoad')
+
+        // if (!this.isLoad)
+        // {
+          console.log('图片完成')
+          this.$emit('categoriesImageLoad')
           this.isLoad = true
-        }
+        // }
       }
     }
   }
@@ -46,22 +60,21 @@ import GridView from "../../../components/common/gridview/GridView";
   position: relative;
 }
 .tab-content-category {
-  padding-top: 10px;
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
   align-content: space-evenly;
-  justify-content: space-evenly;
+
 }
 .item img {
     width: 50px;
   }
 .item {
-  flex-basis: 30%;
+  padding: 5px;
+  flex-basis: 33.2%;
   text-align: center;
 }
   .category-text{
-    margin-top: 13px;
     font-size: 12px;
   }
 

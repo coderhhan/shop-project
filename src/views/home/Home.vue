@@ -234,8 +234,8 @@
     /*height: 300px;*/
     overflow: hidden;
     position: absolute;
-    top: 44px;
-    bottom:49px;
+    top: 0.59rem;
+    bottom:0.65rem;
     left: 0;
     right: 0;
   }
@@ -243,13 +243,16 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: 44px;
+    top: 0.59rem;
   }
   .tab-control {
     position: relative;
-    z-index: 9;
     background-color: #fff;
   }
+  .tabControl{
+    z-index: 7;
+  }
+
   /*.content{*/
   /*  margin-top: 44px;*/
   /*  height: calc(100% - 93px);*/
