@@ -1,6 +1,6 @@
 <template>
     <swiper class="detail-swiper">
-      <swiper-item v-for="(item,index) in topImages" :key="index" class="swiper">
+      <swiper-item v-for="(item,index) in topImages" :key="index" class="swiperItem">
         <img :src="item" alt="">
       </swiper-item>
     </swiper>
@@ -27,7 +27,11 @@
 
 <style scoped>
 .detail-swiper{
+
   height: 300px;
   overflow: hidden;
 }
+  .swiperItem img {
+    width: 100%;
+  }
 </style>

@@ -25,6 +25,7 @@ const routes=[
   ,
   {
     path:'/cart',
+    name: "cart",
     component:Cart
   },
   {
@@ -47,7 +48,7 @@ const routes=[
 ]
 const router =new VueRouter({
   routes,
-  mode:'history'
+  // mode:'history'
 })
 
 export  default  router

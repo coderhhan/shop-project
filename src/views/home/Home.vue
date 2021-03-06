@@ -192,6 +192,7 @@
       getHomeDataFn(){
         getHomeData().then(res =>{
           // this.result = res
+          console.log(res)
           this.banners = res.data.banner.list;
           this.recommends = res.data.recommend.list;
           this.keywords = res.data.keywords.list;
@@ -234,7 +235,7 @@
     /*height: 300px;*/
     overflow: hidden;
     position: absolute;
-    top: 0.59rem;
+    top: 44px;
     bottom:0.65rem;
     left: 0;
     right: 0;

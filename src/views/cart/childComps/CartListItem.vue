@@ -234,7 +234,6 @@ var-card {
   border-radius: 4px;
   display: flex;
   justify-content: center;
-  margin-top:10px;
 }
   .list-item{
     display: flex;

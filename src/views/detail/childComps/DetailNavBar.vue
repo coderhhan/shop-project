@@ -11,8 +11,11 @@
         {{item}}
       </div>
     </div>
-    <div slot="right" class="backbtn" @click="cartBtn">
-      <van-icon name="shopping-cart-o"  size="25px"/>
+    <div slot="right" class="backbtn1" @click="cartBtn">
+      <div>
+        <div class="tag" v-show="isHasGoods"><span class="text">{{counter}}</span></div>
+        <van-icon name="shopping-cart-o"  size="25px" badge="5"/>
+      </div>
     </div>
   </nav-bar>
 </template>
@@ -27,13 +30,24 @@
       return{
         titles:['商品','参数','评价','推荐'],
         currentIndex:0,
-
       }
     },
     props:{
       isExist:{
         type:Boolean,
         default:true
+      }
+    },
+    computed:{
+      isHasGoods(){
+        if (this.$store.state.cartList.length !== 0) {
+          return true
+        } else {
+          return false
+        }
+      },
+      counter(){
+        return this.$store.state.cartList.length
       }
     },
     methods:{
@@ -53,6 +67,7 @@
         this.$router.back()
       },
       cartBtn(){
+        console.log(this.$router)
         this.$router.push('/cart')
       }
     }
@@ -77,8 +92,29 @@
     align-items:center;
     display: -webkit-flex;
     justify-content:center;
-
   }
-
-
+.backbtn1{
+  padding-top: 5px;
+  display: flex;
+  align-items:center;
+  display: -webkit-flex;
+  justify-content:center;
+}
+.tag {
+  width: 15px;
+  height: 15px;
+  right:12px;
+  border: white;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  z-index: 9;
+}
+.text{
+  font-size: 9px;
+  color: white;
+  position: absolute;
+  top: -13px;
+  right:4px;
+}
 </style>

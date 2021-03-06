@@ -4,14 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
     <link rel="icon" href="<%= BASE_URL %>favicon.jpg">
+    <!--vant-css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.5/lib/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <!--引入vant-->
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.5.4/lib/vant.min.js"></script>
+    <!--引入echarts-->
+    <script src="https://cdn.bootcss.com/echarts/4.7.0/echarts.min.js"></script>
+    <!--&lt;!&ndash;引入axios&ndash;&gt;-->
+    <!--<script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>-->
     <title>supermall</title>
   </head>
+
   <body>
     <noscript>
       <strong>We're sorry but supermall doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script>
+      var Vue = window.Vue
+      var vant = window.vant
+      var echarts = window.echarts
+      Vue.use(vant)
+      Vue.use(echarts)
+    </script>
   </body>
+  <!--引入vue-->
+
 </html>

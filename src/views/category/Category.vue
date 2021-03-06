@@ -4,15 +4,14 @@
         <div slot="center" >商品分类</div>
       </nav-bar>
          <tab-menu :categories="categories" @selectItem="selectItem" />
+           <tab-control :titles="titleList"
+                         ref="tabControl1"
+                         class="tabControl"
+                         v-show="isTabFixed"
+                         @tabClick="tabClick" />
           <scroll id="tab-content"  ref="scroll" @scrollPosition="contentScroll" :probe-type="3">
-              <!--<tab-control :titles="titleList"-->
-                         <!--ref="tabControl1"-->
-                         <!--class="tabControl"-->
-                         <!--v-show="isTabFixed"-->
-                         <!--@tabClick="tabClick" />-->
               <tab-content-category :categoryData="categoryData[currentIndex]" @categoriesImageLoad="categoriesImageLoad"></tab-content-category>
-
-            <tab-control :titles="titleList" v-show="!isTabFixed" @tabClick="tabClick" ref="tabControl2"/>
+            <tab-control :titles="titleList"  @tabClick="tabClick" ref="tabControl2"/>
               <goods-list :goods="this.getCategoryDetailInfo">
               </goods-list>
           </scroll>
@@ -102,7 +101,8 @@
         // console.log(this.tabOffsetTop+'tab');
         // console.log(-position.y+'scroll')
         this.isTabFixed=((-position.y)>this.tabOffsetTop)
-        console.log(this.isTabFixed)
+        console.log('this.isTabFixed')
+         console.log(this.isTabFixed)
       },
       selectItem({ maitKey, index }) {
         // console.log( this.tabOffsetTop)
@@ -205,6 +205,14 @@
 
 <style scoped>
   .tabControl{
+    background-color:white ;
+    left: 100px;
+    position: absolute;
+    top: 43.5px;
+    height:46.9px ;
+    right: 0px;
+    z-index: 999;
+    
   }
 .category-nav-bar {
   font-weight: 600;

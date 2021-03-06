@@ -1,8 +1,7 @@
 <template>
   <div class="bottom-bar">
-
     <van-goods-action>
-      <van-goods-action-icon icon="shop-o" text="店铺" />
+      <van-goods-action-icon icon="shop-o" size="400" text="店铺" />
       <van-goods-action-icon icon="chat-o" text="客服" color="#07c160" />
       <van-goods-action-icon icon="star" :text="isActive?'已收藏':'收藏'" :color="isActive?'#ff5000':''"  @click="iconClick"/>
       <van-goods-action-button type="warning" @click="addCart" text="加入购物车" />
@@ -353,4 +352,7 @@
   text-align: center;
 }
 
+.van-goods-action-icon {
+  font-size: 14px;
+}
 </style>
